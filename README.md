@@ -1,4 +1,4 @@
-# 🌱 GreenLink - Professional Networking Platform
+# Professional Networking Platform
 
 ![GreenLink Banner](assets/GreenLinkBanner.png)
 
