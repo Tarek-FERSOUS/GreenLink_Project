@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLink - Professional Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        light: {
+                            bg: '#f8fafc',
+                            card: '#ffffff',
+                            text: '#1a202c',
+                            border: '#e2e8f0'
+                        },
+                        dark: {
+                            bg: '#1a202c',
+                            card: '#2d3748',
+                            text: '#f7fafc',
+                            border: '#4a5568'
+                        }
+                    },
+                    transitionProperty: {
+                        'colors': 'background-color, border-color, color, fill, stroke'
+                    },
+                    transitionDuration: {
+                        '300': '300ms'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-white dark:bg-gray-800 shadow-sm">
+        <!-- Update the header container and its immediate children -->
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Left side - Logo and Search -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-2xl font-bold text-primary-600 dark:text-primary-400">GreenLink</a>
+                <div class="hidden md:block relative w-64">
+                    <input type="text" id="searchInput" placeholder="Search posts..." 
+                           class="search-input w-full px-4 py-2 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <button id="searchButton" class="absolute right-3 top-2 text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right side - Navigation and Profile -->
+            <div class="flex items-center space-x-1">
+                <!-- Navigation items -->
+                <nav class="flex items-center space-x-1">
+                    <a href="#" class="hidden md:flex nav-item flex-col items-center px-4 py-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                        <i class="fas fa-home text-xl"></i>
+                        <span class="hidden md:block text-xs mt-1">Home</span>
+                    </a>
+                    <a href="#" class="nav-item flex flex-col items-center px-4 py-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                        <div class="badge-container">
+                            <i class="fas fa-user-friends text-xl"></i>
+                            <div class="notification-badge new">12</div>
+                        </div>
+                        <span class="hidden md:block text-xs mt-1">Network</span>
+                    </a>
+                    <a href="#" class="hidden md:flex nav-item flex-col items-center px-4 py-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                        <i class="fas fa-briefcase text-xl"></i>
+                        <span class="hidden md:block text-xs mt-1">Jobs</span>
+                    </a>
+                    <a href="#" class="nav-item flex flex-col items-center px-4 py-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                        <div class="badge-container">
+                            <i class="fas fa-comment-dots text-xl"></i>
+                            <div class="notification-badge">5</div>
+                        </div>
+                        <span class="hidden md:block text-xs mt-1">Messaging</span>
+                    </a>
+                    <a href="#" class="nav-item flex flex-col items-center px-4 py-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                        <div class="badge-container">
+                            <i class="fas fa-bell text-xl"></i>
+                            <div class="notification-badge urgent">3</div>
+                        </div>
+                        <span class="hidden md:block text-xs mt-1">Notifications</span>
+                    </a>
+                </nav>
+
+                <!-- Theme and Profile -->
+                <button id="themeToggle" class="nav-item flex flex-col items-center px-4 py-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                    <i class="fas fa-moon dark:hidden text-xl"></i>
+                    <i class="fas fa-sun hidden dark:block text-xl"></i>
+                    <span class="hidden md:block text-xs mt-1">Theme</span>
+                </button>
+                <a href="#profile" class="nav-item flex flex-col items-center px-4 py-2 text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white">
+                    <img src="assets/pfp.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+                    <span class="hidden md:block text-xs mt-1">My Profile</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar -->
+            <aside class="hidden md:block w-64 flex-shrink-0">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 sticky top-24">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <a href="#profile">
+                            <img src="/assets/pfp.jpg" alt="Profile" class="w-12 h-12 rounded-full">
+                        </a>
+                        <div>
+                            <a href="#profile">
+                                <h3 class="font-semibold dark:text-white">Tarek Fersous</h3>
+                            </a>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">CS Student</p>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 dark:border-gray-700 pt-3">
+                        <a href="#" class="flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                            <span>Connections</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded-full text-xs">623</span>
+                        </a>
+                        <a href="#" class="flex items-center justify-between py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                            <span>Who viewed your profile</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded-full text-xs">128</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
+                        <h4 class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Recent</h4>
+                        <a href="#" class="flex items-center py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                            <span class="w-2 h-2 rounded-full bg-primary-500 mr-2"></span>
+                            #webdevelopment
+                        </a>
+                        <a href="#" class="flex items-center py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                            <span class="w-2 h-2 rounded-full bg-primary-500 mr-2"></span>
+                            #careergrowth
+                        </a>
+                        <a href="#" class="flex items-center py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                            <span class="w-2 h-2 rounded-full bg-primary-500 mr-2"></span>
+                            #remotework
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Feed -->
+            <div class="flex-1">
+                <!-- Create Post -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm mb-6 p-4">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="/assets/pfp.jpg" alt="Profile" class="w-10 h-10 rounded-full">
+                        <button onclick="openPostModal()" class="flex-1 text-left px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                            Start a post...
+                        </button>
+                    </div>
+                    <div class="flex justify-between">
+                        <button onclick="openPostModal()" class="flex items-center space-x-1 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded">
+                            <i class="far fa-image text-primary-500"></i>
+                            <span>Photo</span>
+                        </button>
+                        <button onclick="openPostModal()" class="flex items-center space-x-1 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded">
+                            <i class="fas fa-video text-primary-500"></i>
+                            <span>Video</span>
+                        </button>
+                        <button onclick="openPostModal()" class="flex items-center space-x-1 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded">
+                            <i class="far fa-calendar-alt text-primary-500"></i>
+                            <span>Event</span>
+                        </button>
+                        <button onclick="openPostModal()" class="flex items-center space-x-1 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded">
+                            <i class="far fa-newspaper text-primary-500"></i>
+                            <span>Article</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Posts Feed -->
+                <div id="postsContainer">
+                    <!-- Posts will be loaded here -->
+                </div>
+
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="flex justify-center py-8 hidden">
+                    <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary-500"></div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="hidden lg:block w-80 flex-shrink-0 space-y-6">
+                <!-- News & Updates Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4">
+                    <h3 class="font-medium dark:text-white mb-4">News & Updates</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
+                                    <i class="fas fa-bolt text-primary-600 dark:text-primary-400"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm dark:text-white">The tech industry is booming with new opportunities in AI and machine learning.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-primary-600 dark:text-primary-400"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm dark:text-white">Remote work is becoming the new norm for many companies worldwide.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">5 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- People you may know Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4">
+                    <h3 class="font-medium dark:text-white mb-3">People you may know</h3>
+                    <div class="space-y-4" id="peopleYouMayKnow">
+                        <!-- People will be loaded here dynamically -->
+                    </div>
+                </div>
+                <footer class="sticky top-28 text-xs text-gray-500 dark:text-gray-400">
+                    <div class="flex flex-wrap gap-x-4 gap-y-2 mb-4">
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">About</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">Accessibility</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">Help Center</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">Privacy & Terms</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">Ad Choices</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">Advertising</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">Business Services</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">Get the GreenLink app</a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 hover:underline">More</a>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                        <span class="text-primary-600 dark:text-primary-400 font-medium">GreenLink</span>
+                        <span>Corporation © 2025</span>
+                    </div>
+                </footer>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div id="postModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg w-full max-w-md mx-4">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-lg font-medium dark:text-white">Create a post</h3>
+                <button onclick="closePostModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center space-x-3 mb-4">
+                    <img src="/assets/pfp.jpg" alt="Profile" class="w-10 h-10 rounded-full">
+                    <div>
+                        <h4 class="font-medium dark:text-white">Tarek Fersous</h4>
+                        <div class="flex items-center space-x-1">
+                            <select class="text-xs bg-gray-100 dark:bg-gray-700 rounded px-2 py-1 outline-none">
+                                <option>Anyone</option>
+                                <option>Connections only</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <textarea id="postContent" class="w-full h-32 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-transparent dark:text-white" placeholder="What's on your mind?"></textarea>
+                <div class="flex justify-between items-center mt-4">
+                    <div class="flex space-x-2">
+                        <button class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
+                            <i class="far fa-image"></i>
+                        </button>
+                        <button class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
+                            <i class="far fa-file-alt"></i>
+                        </button>
+                    </div>
+                    <button onclick="createPost()" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full">
+                        Post
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Detail Modal -->
+    <div id="postDetailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 sticky top-0 bg-white dark:bg-gray-800 z-10">
+                <h3 class="text-lg font-medium dark:text-white">Post Details</h3>
+                <button onclick="closePostDetailModal()" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="postDetailContent" class="p-4">
+                <!-- Post details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <section id="profile" class="container mx-auto px-4 py-8 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
+            <!-- Profile Header -->
+            <div class="relative">
+                <div class="h-48 bg-gradient-to-r from-primary-500 to-primary-700"></div>
+                <div class="absolute -bottom-16 left-6">
+                    <img src="assets/pfp.jpg" alt="Profile" class="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800">
+                </div>
+            </div>
+            <div class="pt-20 px-6 pb-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h1 class="text-2xl font-bold dark:text-white">Tarek Fersous</h1>
+                        <p class="text-gray-600 dark:text-gray-400">Computer Science student | Ai Enthusiast</p>
+                        <p class="text-gray-500 dark:text-gray-500 text-sm mt-2">Algiers, ALGERIA · <a href="#" class="text-primary-600 dark:text-primary-400">Contact info</a></p>
+                    </div>
+                    <button class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full">
+                        <i class="fas fa-pencil-alt mr-2"></i> Edit profile
+                    </button>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+                <div class="flex space-x-6">
+                    <div>
+                        <span class="block font-medium dark:text-white">500+</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Connections</span>
+                    </div>
+                    <div>
+                        <span class="block font-medium dark:text-white">1.2K</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">Followers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+                <h2 class="text-lg font-medium dark:text-white mb-4">About</h2>
+                <p class="text-gray-700 dark:text-gray-300">
+                    A tech-savvy mind with a strong interest in computer science and artificial 
+                    intelligence. I have a natural ability to easily adapt to new environments and 
+                    understand complex concepts with ease. My approach involves the use of 
+                    analytical thinking coupled with experimental learning, which allows me to 
+                    approach technology solutions with a unique perspective. I'm committed to 
+                    deep learning, practical problem-solving, and the design of technology with 
+                    real-world usability.</p>
+                    <p class="text-gray-700 dark:text-gray-300">I am eager to apply my interdisciplinary knowledge and expertise to further 
+                    innovate and enhance technology workflows.
+                </p>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+                <h2 class="text-lg font-medium dark:text-white mb-4">Experience</h2>
+                <div class="space-y-4">
+                    <div class="flex space-x-4">
+                        <img src="assets/techno.jpg" alt="Company" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h3 class="font-medium dark:text-white">Sales assistant</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Techno Stationery Inc.</p>
+                            <p class="text-gray-500 dark:text-gray-500 text-sm">Jun 2020 - Sep 2024 · 4 yrs 6 mos</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-1">Retail and inventory management, marketing and merchendizing, customer support.</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <img src="assets/fiver.png" alt="Company" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h3 class="font-medium dark:text-white">Web App Developer</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Freelancer</p>
+                            <p class="text-gray-500 dark:text-gray-500 text-sm">Jun 2024 - Present · 1 yrs 7 mos</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-1">Developed and maintained web applications using modern JavaScript frameworks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+                <h2 class="text-lg font-medium dark:text-white mb-4">Education</h2>
+                <div class="flex space-x-4">
+                    <img src="/assets/logo_alger1.png" alt="University" class="w-12 h-12 rounded-full">
+                    <div>
+                        <h3 class="font-medium dark:text-white">University of Algiers 1</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Bachelor of Science - BS, Computer Science</p>
+                        <p class="text-gray-500 dark:text-gray-500 text-sm">2023 - 2028</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Back to Top Button--> 
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-primary-600 dark:bg-primary-500 text-white rounded-full p-3 shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 hover:bg-primary-700 dark:hover:bg-primary-600 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

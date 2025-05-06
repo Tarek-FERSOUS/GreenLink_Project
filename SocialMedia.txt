@@ -1,0 +1,20 @@
+A social media app that looks like LinkedIn including the following features: 
+• A post feed (homepage) displaying a list of posts. 
+• An item display page for viewing individual posts in detail.
+• A profile page showing user information. 
+Additionally, users should be able to interact with posts through features such as likes and 
+comments.
+Build the homepage feed to display the following for each post: 
+• Post content.
+• Caption text.
+• Like button with a live like counter.
+• Comment section showing: 
+• The 2 most recent comments.
+• A "View all" link or button.
+• Implement infinite scrolling to load more posts dynamically.
+Bonus Features:
+• Search Functionality - Filter posts by caption text.
+• Dark and Light Mode Toggle.
+• Green color palette.
+• Animations - Like heart pulse, smooth loading.
+• Responsive Design - Optimized for mobile.

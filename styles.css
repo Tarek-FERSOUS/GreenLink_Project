@@ -1,0 +1,471 @@
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-pulse {
+    animation: pulse 0.5s ease-in-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.post-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.dark .post-loading {
+    background: linear-gradient(90deg, #2d3748 25%, #4a5568 50%, #2d3748 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.comment-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.comment-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.2s ease;
+}
+
+.comment-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comment-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+/* Add these transition classes */
+.transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* Update contrast ratios for better accessibility */
+.dark .text-gray-400 {
+    color: #9ca3af; /* Increased contrast in dark mode */
+}
+
+.text-gray-600 {
+    color: #4b5563; /* Better contrast in light mode */
+}
+
+/* Smooth background transitions */
+body,
+.bg-white,
+.dark\:bg-gray-800,
+.bg-gray-50,
+.dark\:bg-gray-900 {
+    transition: background-color 300ms ease-in-out;
+}
+
+/* Add after existing transitions */
+
+/* Hover Card Styles */
+.hover-card {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s ease-in-out;
+    width: 320px;
+    z-index: 50;
+}
+
+.hover-trigger:hover + .hover-card,
+.hover-card:hover {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add shadow and border styles */
+.hover-card-content {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for buttons */
+.hover-card .btn-connect,
+.hover-card .btn-message {
+    transition: all 0.2s ease;
+}
+
+.hover-card .btn-connect:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+.hover-card .btn-message:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Notification Badge Styles */
+.badge-container {
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 9px;
+    background: linear-gradient(45deg, #3b82f6, #2563eb);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center;
+    animation: badgePop 0.3s ease-out;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .notification-badge {
+    border-color: #1f2937;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.notification-badge.urgent {
+    background: linear-gradient(45deg, #ef4444, #dc2626);
+    animation: urgentPulse 2s infinite;
+}
+
+.notification-badge.new {
+    background: linear-gradient(45deg, #22c55e, #16a34a);
+}
+
+@keyframes badgePop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes urgentPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Hover effect for badges */
+.badge-container:hover .notification-badge {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Special effect for high numbers */
+.notification-badge.high-count {
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+}
+
+/* Update Status Indicator Styles */
+.status-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+/* Adjust position for different image sizes */
+.w-8 ~ .status-indicator {
+    width: 10px;
+    height: 10px;
+    border-width: 1.5px;
+}
+
+/* Status indicator in hover card */
+.hover-card .status-indicator {
+    width: 14px;
+    height: 14px;
+    border-width: 2.5px;
+}
+
+.dark .status-indicator {
+    border-color: #1f2937;
+}
+
+/* Add hover card status text styles */
+.status-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #6B7280;
+}
+
+/* Different status types */
+.status-online {
+    background: linear-gradient(45deg, #22c55e, #16a34a);
+    box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+    animation: pulse-green 2s infinite;
+}
+
+.status-busy {
+    background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+.status-away {
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+}
+
+.status-offline {
+    background: #9ca3af;
+}
+
+.status-meeting {
+    background: linear-gradient(45deg, #8b5cf6, #6d28d9);
+    animation: pulse-purple 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+@keyframes pulse-purple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(139, 92, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+/* Remove the status indicator from hover card profile picture */
+.hover-card .status-indicator {
+    display: none;
+}
+
+/* Add styles for inline status indicator */
+.status-inline {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+/* Apply status colors to inline indicators */
+.status-inline.status-online {
+    background: linear-gradient(45deg, #22c55e, #16a34a);
+}
+
+.status-inline.status-busy {
+    background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+.status-inline.status-away {
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+}
+
+.status-inline.status-offline {
+    background: #9ca3af;
+}
+
+.status-inline.status-meeting {
+    background: linear-gradient(45deg, #8b5cf6, #6d28d9);
+}
+
+/* Comment Input Styles */
+.comment-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.comment-input {
+    min-height: 40px;
+    max-height: 120px;
+    resize: none;
+    overflow-y: auto;
+    line-height: 1.5;
+    padding-right: 80px; /* Space for actions */
+    width: 100%;
+}
+
+.comment-actions {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.comment-actions.visible {
+    opacity: 1;
+}
+
+/* Mention styles */
+.mention {
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.dark .mention {
+    color: #60a5fa;
+}
+
+/* Send button animation */
+.send-button {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.send-button.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.send-button:hover {
+    transform: scale(1.1);
+}
+
+/* Comment Input Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.comment-new {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Update Comment Input Styles */
+.comment-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.comment-input,
+.detail-comment-input {
+    min-height: 40px;
+    max-height: 120px;
+    resize: none;
+    overflow-y: auto;
+    line-height: 1.5;
+    padding-right: 80px;
+    width: 100%;
+}
+
+.comment-actions {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.comment-actions.visible {
+    opacity: 1;
+}
+
+/* Comment Animation Styles */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.comment-new {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+/* Enhance the comments container for smooth transitions */
+.comments-container {
+    position: relative;
+    transition: all 0.3s ease;
+}
+/* Search input text color */
+.dark .search-input {
+    color: white;
+    caret-color: white; /* This changes the cursor color */
+}
+
+/* Placeholder color in dark mode */
+.dark .search-input::placeholder {
+    color: #9ca3af; /* A lighter gray color for placeholder */
+}
