@@ -1,6 +1,6 @@
 # 🌱 GreenLink - Professional Networking Platform
 
-![GreenLink Banner](assets/favicon/android-chrome-512x512.png)
+![GreenLink Banner](assets/GreenLinkBanner.png)
 
 ## 📋 Overview
 
