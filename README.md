@@ -2,6 +2,26 @@
 
 ![GreenLink Banner](assets/GreenLinkBanner.png)
 
+## 📸 Preview
+
+<p align="center">
+  <img src="/assets/preview_dark.png" alt="GreenLink Feed Light Mode" width="700"/>
+  <br>
+  <em>Feed - Light Mode</em>
+</p>
+
+<p align="center">
+  <img src="assets/preview_light.png" alt="GreenLink Feed Dark Mode" width="700"/>
+  <br>
+  <em>Feed - Dark Mode</em>
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/greenlink-profile.png" alt="GreenLink Profile" width="700"/>
+  <br>
+  <em>User Profile</em>
+</p>
+
 ## 📋 Overview
 
 GreenLink is a modern, responsive professional networking platform built with HTML, CSS, and JavaScript. It features a clean, intuitive interface with both light and dark modes, real-time interactions, and a seamless user experience.
