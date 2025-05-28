@@ -17,9 +17,9 @@
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/greenlink-profile.png" alt="GreenLink Profile" width="700"/>
+  <img src="assets/preview_mobile.png" alt="GreenLink Profile" width="700"/>
   <br>
-  <em>User Profile</em>
+  <em>Mobile preview</em>
 </p>
 
 ## 📋 Overview
