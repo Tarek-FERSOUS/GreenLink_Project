@@ -97,6 +97,60 @@ const postsData = [
         ],
         timestamp: "3 days ago",
         liked: false
+    },
+    {
+        id: 6,
+        author: {
+            name: "Boumela Nora",
+            title: "Frontend Developer at WebTech",
+            avatar: "assets/f1.png",
+            status: "meeting"
+        },
+        content: "Just finished a big UI refactor! The new design system is live and the feedback has been great. Consistency and accessibility were our top priorities. 🚀",
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        likes: 98,
+        comments: [
+            { id: 1, author: "Hemili Mohamed", text: "Congrats Nora! The new look is super clean.", avatar: "assets/m1.png", status: "busy", liked: false },
+            { id: 2, author: "Rofia Ghoul", text: "Love the accessibility improvements!", avatar: "assets/f1.png", status: "online", liked: false }
+        ],
+        timestamp: "6 hours ago",
+        liked: false
+    },
+    {
+        id: 7,
+        author: {
+            name: "Rofia Ghoul",
+            title: "Product Manager at TechCorp",
+            avatar: "assets/f1.png",
+            status: "online"
+        },
+        content: "We just wrapped up sprint planning. Excited for the new features coming soon. Shoutout to the dev team for their hard work and creativity! 💡",
+        image: null,
+        likes: 112,
+        comments: [
+            { id: 1, author: "Boumela Nora", text: "Looking forward to building these features!", avatar: "assets/f1.png", status: "meeting", liked: false },
+            { id: 2, author: "Hemili Mohamed", text: "Great planning session, team!", avatar: "assets/m1.png", status: "busy", liked: false }
+        ],
+        timestamp: "9 hours ago",
+        liked: false
+    },
+    {
+        id: 8,
+        author: {
+            name: "Hemili Mohamed",
+            title: "Senior Developer at DevSolutions",
+            avatar: "assets/m1.png",
+            status: "busy"
+        },
+        content: "Started experimenting with new testing frameworks for our React apps. Early results are promising! Anyone else using something other than Jest?",
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+        likes: 76,
+        comments: [
+            { id: 1, author: "Boumela Nora", text: "I've tried Cypress for end-to-end tests, works great!", avatar: "assets/f1.png", status: "meeting", liked: false },
+            { id: 2, author: "Rofia Ghoul", text: "Curious to hear your thoughts after a few weeks!", avatar: "assets/f1.png", status: "online", liked: false }
+        ],
+        timestamp: "12 hours ago",
+        liked: false
     }
 ];
 
@@ -152,6 +206,21 @@ let currentPage = 1;
 let isLoading = false;
 let filteredPosts = [...postsData];
 let darkMode = localStorage.getItem('darkMode') === 'true';
+
+// Shuffle helper
+function shuffleArray(array) {
+    const arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// State for shuffled posts
+let shuffledPosts = shuffleArray(filteredPosts);
+let postPointer = 0;
+const postsPerPage = 2;
 
 // Initialize the app
 function init() {
@@ -211,22 +280,21 @@ function hideProfilePage() {
 function loadPosts() {
     isLoading = true;
     loadingSpinner.classList.remove('hidden');
-    
-    // Simulate API call delay
+
     setTimeout(() => {
-        const postsPerPage = 2;
-        const startIndex = (currentPage - 1) * postsPerPage;
-        const endIndex = startIndex + postsPerPage;
-        const postsToAdd = filteredPosts.slice(startIndex, endIndex);
-        
-        if (postsToAdd.length > 0) {
-            postsToAdd.forEach(post => {
-                const postElement = createPostElement(post);
-                postsContainer.appendChild(postElement);
-            });
-            currentPage++;
+        // If we've reached the end, reshuffle and start over
+        if (postPointer >= shuffledPosts.length) {
+            shuffledPosts = shuffleArray(filteredPosts);
+            postPointer = 0;
         }
-        
+        const postsToAdd = shuffledPosts.slice(postPointer, postPointer + postsPerPage);
+
+        postsToAdd.forEach(post => {
+            const postElement = createPostElement(post);
+            postsContainer.appendChild(postElement);
+        });
+        postPointer += postsPerPage;
+
         isLoading = false;
         loadingSpinner.classList.add('hidden');
     }, 800);
@@ -662,10 +730,10 @@ function handleSearch() {
     } else {
         filteredPosts = [...postsData];
     }
-    
-    // Reset and reload posts
     postsContainer.innerHTML = '';
-    currentPage = 1;
+    // Reset shuffle state
+    shuffledPosts = shuffleArray(filteredPosts);
+    postPointer = 0;
     loadPosts();
 }
 
@@ -711,12 +779,13 @@ function createPost() {
         
         postsData.unshift(newPost);
         filteredPosts.unshift(newPost);
-        
-        // Reset and reload posts
+
         postsContainer.innerHTML = '';
-        currentPage = 1;
+        // Reset shuffle state
+        shuffledPosts = shuffleArray(filteredPosts);
+        postPointer = 0;
         loadPosts();
-        
+
         closePostModal();
     }
 }
