@@ -3,7 +3,7 @@ const postsData = [
     {
         id: 1,
         author: {
-            name: "Rofia Ghoul",
+            name: "Rafia Ghoul",
             title: "Product Manager at TechCorp",
             avatar: "/assets/f1.png",
             status: "online"  // Add status field
@@ -56,7 +56,7 @@ const postsData = [
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
         likes: 156,
         comments: [
-            { id: 1, author: "Rofia Ghoul", text: "Great reminders! Color contrast is so important.", avatar: "assets/f1.png", liked: false },
+            { id: 1, author: "Rafia Ghoul", text: "Great reminders! Color contrast is so important.", avatar: "assets/f1.png", liked: false },
             { id: 2, author: "Mahseur Mohamed", text: "Do you have any favorite tools for accessibility testing?", avatar: "assets/m1.png", liked: false }
         ],
         timestamp: "1 day ago",
@@ -111,7 +111,7 @@ const postsData = [
         likes: 98,
         comments: [
             { id: 1, author: "Hemili Mohamed", text: "Congrats Nora! The new look is super clean.", avatar: "assets/m1.png", status: "busy", liked: false },
-            { id: 2, author: "Rofia Ghoul", text: "Love the accessibility improvements!", avatar: "assets/f1.png", status: "online", liked: false }
+            { id: 2, author: "Rafia Ghoul", text: "Love the accessibility improvements!", avatar: "assets/f1.png", status: "online", liked: false }
         ],
         timestamp: "6 hours ago",
         liked: false
@@ -119,7 +119,7 @@ const postsData = [
     {
         id: 7,
         author: {
-            name: "Rofia Ghoul",
+            name: "Rafia Ghoul",
             title: "Product Manager at TechCorp",
             avatar: "assets/f1.png",
             status: "online"
@@ -147,7 +147,7 @@ const postsData = [
         likes: 76,
         comments: [
             { id: 1, author: "Boumela Nora", text: "I've tried Cypress for end-to-end tests, works great!", avatar: "assets/f1.png", status: "meeting", liked: false },
-            { id: 2, author: "Rofia Ghoul", text: "Curious to hear your thoughts after a few weeks!", avatar: "assets/f1.png", status: "online", liked: false }
+            { id: 2, author: "Rafia Ghoul", text: "Curious to hear your thoughts after a few weeks!", avatar: "assets/f1.png", status: "online", liked: false }
         ],
         timestamp: "12 hours ago",
         liked: false
@@ -157,7 +157,7 @@ const postsData = [
 // Update peopleData to include status
 const peopleData = [
     {
-        name: "Rofia Ghoul",
+        name: "Rafia Ghoul",
         avatar: "assets/f1.png",
         title: "Product Manager at TechCorp",
         status: "online" // Add status field
